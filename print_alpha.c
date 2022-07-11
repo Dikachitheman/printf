@@ -23,10 +23,10 @@ int print_string(va_list args)
 }
 
 /**
- * print_char - prints a character
+ * print_char - prints characters
  * @args: va_list arguments from _printf
  *
- * Return: number of character printed
+ * Return: 1 on success.
  */
 int print_char(va_list args)
 {
