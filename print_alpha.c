@@ -23,19 +23,25 @@ int print_string(va_list args)
 }
 
 /**
- * print_char - prints characters
+ * print_char - prints a character
  * @args: va_list arguments from _printf
  *
- * Return: 1 on success.
+ * Return: number of character printed
  */
 int print_char(va_list args)
 {
-	char c = va_arg(args, int);
-
-	if (c == '\0')
-	{
-		return (write(1, &c, 1));
-	}
-	putchar(c);
+	putchar(va_arg(args, int));
 	return (1);
 }
+
+/**
+ *	char c = va_arg(args, int);
+ *
+ *	if (c == '\0')
+ *	{
+ *		return (write(1, &c, 1));
+ *	}
+ *	putchar(c);
+ *	return (1);
+ *}
+ */
