@@ -13,7 +13,7 @@ int print_int(va_list args)
 
 	if (n < 0)
 	{
-		putchar('-');
+		_putchar('-');
 		len++;
 		n *= -1;
 	}
@@ -24,7 +24,7 @@ int print_int(va_list args)
 	for (; divisor >= 1; n %= divisor, divisor /= 10, len++)
 	{
 		resp = n / divisor;
-		putchar('0' + resp);
+		_putchar('0' + resp);
 	}
 	return (len);
 }
