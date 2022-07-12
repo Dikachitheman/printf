@@ -69,6 +69,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int print_int(va_list args);
+int print_HEX(va_list args);
+int print_binary(va_list args);
+
 typedef struct print_spec
 {
 	char *id;
@@ -189,11 +193,18 @@ int print_int(va_list args)
 	return (len);
 }
 
+int (*state(char c))(va_list)
+{
+    int pos;
+    int i;
+    state = print_spec(pos[i + 1]);
+}
+
 int _printf(const char *format, ...)
 {
 	va_list args;
 	int len = 0, i = 0;
-	int (*func)(va_list);
+	int (*state)(va_list);
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
@@ -204,8 +215,8 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] != '\0')
-				func = print_spec(format[i + 1]);
-			if (func == NULL)
+                state = print_spec(format[i + 1]);
+			if (state == NULL)
 			{
 				putchar(format[i]);
 				len++;
@@ -213,7 +224,7 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				len += func(args);
+				len += state(args);
 				i += 2;
 				continue;
 			}
@@ -235,4 +246,5 @@ int main()
     printf("%d", 89);
     printf("\n");
     _printf("%d", 89);
+    return 0;
 }
