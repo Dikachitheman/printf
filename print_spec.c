@@ -23,9 +23,12 @@ int (*print_spec(char c))(va_list)
 		{"S", print_S},
 		{"p", print_address},
 		{"r", print_reverse},
-		{"R", print_rot13}
+		{"R", print_rot13},
+		{"o", print_oct},
+		{"x", print_hex},
+		{"X", print_HEX}
 	};
-	int flags = 11;
+	int flags = 14;
 
 	register int i;
 

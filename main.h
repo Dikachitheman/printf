@@ -34,7 +34,7 @@ char *convert(unsigned long int num, int base, int lowercase);
 
 /* print_bases */
 int print_binary(va_list args);
-int print_octal(va_list args);
+int print_oct(va_list args);
 int print_hex(va_list args);
 int print_HEX(va_list args);
 
