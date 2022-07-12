@@ -21,10 +21,11 @@ int (*print_spec(char c))(va_list)
 		{"b", print_binary},
 		{"u", print_unsigned},
 		{"S", print_S},
+		{"p", print_address},
 		{"r", print_reverse},
 		{"R", print_rot13}
 	};
-	int flags = 10;
+	int flags = 11;
 
 	register int i;
 

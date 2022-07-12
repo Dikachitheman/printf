@@ -8,8 +8,42 @@
  */
 int print_binary(va_list args)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	char *str = convert(num, 2, 0);
+	char *str;
+	int j = 0, twos = 1;
+	int i, k;
 
-	return (puts(str));
+	k = va_arg(args, int);
+
+	str = malloc(sizeof(char) * 32 + 1);
+	if (str == NULL)
+	        puts("(null)");
+
+	while (i == k)
+	{
+		if (k < 0)
+		{
+			str[0] = 1 + '0';
+			j++;
+			k *= -1;
+			i *= -1;
+		}
+
+		while (k > 1)
+		{
+			k /= 2;
+			twos *= 2;
+		}
+
+		while (twos > 0)
+		{
+			str[j++] = (i / twos + '0');
+			i %= twos;
+			twos /= 2;
+		}
+		str[j] = '\0';
+
+		puts(str);
+	}
+
+	return (j);
 }
