@@ -17,7 +17,7 @@ typedef struct print_spec
 {
 	char *id;
 	int (*fnspec)(va_list);
-}specptr;
+} specptr;
 
 /* print_alpha */
 int print_char(va_list args);
