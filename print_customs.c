@@ -69,8 +69,7 @@ int print_rot13(va_list args)
 	{
 		i = 0;
 		while (rot13[i] != '\0' && s[j] != rot13[i])
-			putchar(s[j]);
-		i++;
+			i++;
 
 		if (s[j] == rot13[i])
 			putchar(ROT13[i]);
