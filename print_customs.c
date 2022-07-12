@@ -2,62 +2,37 @@
 
 /**
  * print_S - non printable characters
- * (0 < ASCII value < 32 or >= 127) are printed this way:\x, followed by the
+ * Description: (0 < ASCII value < 32 or >= 127) are printed this way:\x, followed by the
  * ASCII code value in hexadecimal (uppercase - always 2 characters)
  * @args: va_list arguments from _printf()
  * Return: number of character printed
  */
-// int print_S(va_list args)
-// {
-// 	int i, count = 0;
-// 	char *res;
-// 	char *s = va_arg(args, char *);
-
-// 	if (!s)
-// 		return (puts("(null)"));
-
-// 	for (i = 0; s[i]; i++)
-// 	{
-// 		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
-// 		{
-// 			puts("\\x"), count += 2, res = convert(s[i], 16, 0);
-// 			if (!res[1])
-// 				count += _putchar('0');
-// 			count += puts(res);
-// 		}
-// 		else
-// 			count += _putchar(s[i]);
-// 	}
-// 	return (count);
-// }
-
-
-int print_S(va_list arg)
+int print_S(va_list args)
 {
-int i;
-char *str = va_arg(arg, char*);
+	int i;
+	char *str = va_arg(arg, char*);
 
-if (str == NULL)
-	str = "(null)";
-else if (*str == '\0')
-	return (-1);
+	if (str == NULL)
+		str = "(null)";
+	else if (*str == '\0')
+		return (-1);
 
-for (i = 0; str[i]; i++)
-{
-	if ((str[i] < 32 && str[i] > 0) || str[i] >= 127)
+	for (i = 0; str[i]; i++)
 	{
-		putchar('\\');
-		putchar('x');
-		if (i < 16)
-			putchar('0');
+		if ((str[i] < 32 && str[i] > 0) || str[i] >= 127)
+		{
+			putchar('\\');
+			putchar('x');
+			if (i < 16)
+				putchar('0');
 
-		print_HEX(str[i]);
+			print_HEX(str[i]);
+		}
+		else
+			putchar(str[i]);
 	}
-	else
-		putchar(str[i]);
-}
 
-return (i);
+	return (i);
 }
 
 /**
