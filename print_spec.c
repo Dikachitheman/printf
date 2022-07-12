@@ -29,7 +29,6 @@ int (*print_spec(char c))(va_list)
 		{"X", print_HEX}
 	};
 	int flags = 14;
-
 	register int i;
 
 	for (i = 0; i < flags; i++)
