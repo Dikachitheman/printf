@@ -29,6 +29,7 @@ int print_unsigned(va_list args);
 
 /* converter */
 char *convert(unsigned long int num, int base, int lowercase);
+char *convert_rot13(char *str);
 
 /* print_bases */
 int print_binary(va_list args);
@@ -49,7 +50,7 @@ int print_address(va_list args);
 
 /* write_functions */
 int _putchar(char c);
-int _puts(char *str);
+int _puts(char *str, int ascii);
 
 /* _printf */
 int _printf(const char *format, ...);

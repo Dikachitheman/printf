@@ -20,10 +20,8 @@ int print_S(va_list args)
 	{
 		if (s[i] > 0 && (s[i] < 32 || s[i] >= 127))
 		{
-			puts("\\x");
-			count += 2;
-			res = convert(s[i], 16, 0);
 			if (!res[1])
+			puts("\\x"), count += 2, res = convert(s[i], 16, 0);
 				count += putchar('0');
 			count += puts(res);
 		}
@@ -35,7 +33,7 @@ int print_S(va_list args)
 
 /**
  * print_reverse - prints a string in reverse
- * @args: va_list arguments from _printf
+ * @args: va_list arguments from _printf()
  * Return: length of the printed string
  */
 int print_reverse(va_list args)
@@ -56,30 +54,25 @@ int print_reverse(va_list args)
 }
 
 /**
- * print_rot13 - prints a string using rot13
- * @args: va_list of arguments from _printf()
- * Return: length of the printed string
+ * print_rot13 - encrypts string with rot13
+ * @args: va_list arguments from _printf()
+ * Return: number of printed char
  */
 int print_rot13(va_list args)
 {
-	int i, j;
-	char rot13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char ROT13[] = "mnopqrstuvwxyzabcdefghijklMNOPQRSTUVWXYZABCDEFGHIJKL";
-	char *s = va_arg(args, char *);
+	int sum = 0;
+	char *str, *argument = va_arg(args, char *);
 
-	for (j = 0; s[j]; j++)
+	if (!argument)
 	{
-		if (s[j] < 'A' || (s[j] > 'Z' && s[j] < 'a') || s[j] > 'z')
-			putchar(s[j]);
-		else
-		{
-			for (i = 0; i <= 52; i++)
-			{
-				if (s[j] == rot13[i])
-					putchar(ROT13[i]);
-			}
-		}
+		sum += _puts("%R", 0);
+		return (sum);
 	}
 
-	return (j);
+	str = convert_rot13(argument);
+	if (!str)
+		return (0);
+	sum = _puts(str, 0);
+	free(str);
+	return (sum);
 }

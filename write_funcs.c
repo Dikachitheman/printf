@@ -29,13 +29,18 @@ int _putchar(char c)
 /**
  * _puts - prints a string to stdout
  * @str: pointer to the string to print
+ * @ascii: restrict ascii
  * Return: number of characters written
  */
-int _puts(char *str)
+int _puts(char *str, int ascii)
 {
 	register int i;
 
-	for (i = 0; str[i] != '\0'; i++)
-		_putchar(str[i]);
+	if (ascii)
+	{
+		for (i = 0; str[i] != '\0'; i++)
+			_putchar(str[i]);
+	}
+	
 	return (i);
 }
