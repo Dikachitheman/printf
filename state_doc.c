@@ -63,3 +63,163 @@
  * 
  * }
  */
+
+
+#include <stdarg.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+int (*print_spec(char ch))(va_list)
+{
+	specptr functs_arr[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{"d", print_int},
+		{"i", print_int},
+		{"b", print_binary},
+		{"u", print_unsigned},
+		{"S", print_S},
+		{"p", print_address},
+		{"r", print_reverse},
+		{"R", print_rot13},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_HEX}
+	};
+	int flags = 14;
+	register int i;
+
+	for (i = 0; i < flags; i++)
+		if (functs_arr[i].id[0] == ch)
+			return (functs_arr[i].fnspec);
+	return (NULL);
+}
+
+
+int print_HEX(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+	unsigned int num2;
+	char c = 'A';
+	int i, j, remainder, nbrCharacters = 0;
+	char *numhex;
+
+	for (num2 = num; num2 != 0; nbrCharacters++, num2 /= 16)
+		;
+
+	numhex = malloc(nbrCharacters);
+	for (i = 0; num != 0; i++)
+	{
+		remainder = num % 16;
+		if (remainder < 10)
+			numhex[i] = remainder + '0';
+		else
+			numhex[i] = remainder - 10 + c;
+		num = num / 16;
+	}
+	for (j = i - 1; j >= 0; j--)
+		putchar(numhex[j]);
+	free(numhex);
+	return (nbrCharacters);
+}
+
+
+int print_binary(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+	unsigned int copy;
+	char *bin;
+	int i, j, charPrinted = 0;
+
+	if (num == 0)
+		return (putchar('0'));
+	for (copy = num; copy != 0; j++)
+	{
+		copy = copy / 2;
+	}
+	bin = malloc(j);
+	if (!bin)
+		return (-1);
+
+	for (i = j - 1; i >= 0; i--)
+	{
+		bin[i] = num % 2 + '0';
+		num = num / 2;
+	}
+
+	for (i = 0; i < j && octa[i] == '0'; i++)
+		;
+	for (; i < j; i++)
+	{
+		putchar(bin[i]);
+		charPrinted++;
+	}
+	free(bin);
+	return (charPrinted);
+}
+
+int print_int(va_list args)
+{
+
+	unsigned int divisor = 1, i, resp, len = 0;
+	int n = va_arg(args, int);
+
+	if (n < 0)
+	{
+		putchar('-');
+		len++;
+		n *= -1;
+	}
+
+	for (i = 0; n / divisor > 9; i++, divisor *= 10)
+		;
+
+	for (; divisor >= 1; n %= divisor, divisor /= 10, len++)
+	{
+		resp = n / divisor;
+		putchar('0' + resp);
+	}
+	return (len);
+}
+
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int len = 0, i = 0;
+	int (*func)(va_list);
+
+	if (!format || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
+	va_start(args, format);
+
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			if (format[i + 1] != '\0')
+				func = print_spec(format[i + 1]);
+			if (func == NULL)
+			{
+				putchar(format[i]);
+				len++;
+				i++;
+			}
+			else
+			{
+				len += func(args);
+				i += 2;
+				continue;
+			}
+		}
+		else
+		{
+			putchar(format[i]);
+			len++;
+			i++;
+		}
+	}
+	va_end(args);
+	return (len);
+}
