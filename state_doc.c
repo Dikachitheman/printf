@@ -31,5 +31,13 @@
  * example %4.2ld, 67.0987
  *      = 67.09
  * 
+ * va_list would contain the entire elements --
+ * 
+ * flag not present, flag false.
+ * length true in pos + 1, length function would print first four characters
+ * precision would check for decimal point, print first two characters
+ * long??
+ * flag too??
+ * 
  * 
  */
