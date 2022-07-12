@@ -1,15 +1,20 @@
 #include "main.h"
 
+/**
+ * print_HEX - prints unsigned int to hexadecimal(uppercase)
+ * @args: va_list arguments from _printf()
+ * Return: number of char printed
+ */
 int print_HEX(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
-    unsigned int num2;
-    char c = 'A';
+	unsigned int num2;
+	char c = 'A';
 	int i, j, remainder, nbrCharacters = 0;
 	char *numhex;
 
 	for (num2 = num; num2 != 0; nbrCharacters++, num2 /= 16)
-	;
+		;
 
 	numhex = malloc(nbrCharacters);
 	for (i = 0; num != 0; i++)
@@ -28,21 +33,20 @@ int print_HEX(va_list args)
 }
 
 /**
- * print_unsignedIntToHex - prints unsigned int to hexadecimal.
- * @num: number to print
- * @_case: letter `a` on the case to print it (upper or lower)
- * Return: number or char printed
+ * print_hex - prints unsigned int to hexadecimal(lowercase)
+ * @args: va_list arguments from _printf()
+ * Return: number of char printed
  */
 int print_hex(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
-    unsigned int num2;
-    char c = 'a';
+	unsigned int num2;
+	char c = 'a';
 	int i, j, remainder, nbrCharacters = 0;
 	char *numhex;
 
 	for (num2 = num; num2 != 0; nbrCharacters++, num2 /= 16)
-	;
+		;
 
 	numhex = malloc(nbrCharacters);
 	for (i = 0; num != 0; i++)
@@ -62,8 +66,8 @@ int print_hex(va_list args)
 
 
 /**
- * print_oct - prints number in octal base.
- * @arg: list containing octal number to be printed
+ * print_binary - prints number in binary.
+ * @args: list containing octal number to be printed
  * Return: number of octals printed
  */
 
@@ -71,7 +75,7 @@ int print_binary(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int copy;
-	char *octa;
+	char *bin;
 	int i, j, charPrinted = 0;
 
 	if (num == 0)
@@ -80,13 +84,13 @@ int print_binary(va_list args)
 	{
 		copy = copy / 2;
 	}
-	octa = malloc(j);
-	if (!octa)
+	bin = malloc(j);
+	if (!bin)
 		return (-1);
 
 	for (i = j - 1; i >= 0; i--)
 	{
-		octa[i] = num % 2 + '0';
+		bin[i] = num % 2 + '0';
 		num = num / 2;
 	}
 
@@ -94,20 +98,20 @@ int print_binary(va_list args)
 		;
 	for (; i < j; i++)
 	{
-		putchar(octa[i]);
+		putchar(bin[i]);
 		charPrinted++;
 	}
-	free(octa);
+	free(binxx);
 	return (charPrinted);
 }
 
 /**
- * print_oct - prints number in octal base.
- * @arg: list containing octal number to be printed
+ * print_octal - prints number in octal base.
+ * @args: list containing octal number to be printed
  * Return: number of octals printed
  */
 
-int print_oct(va_list args)
+int print_octal(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int copy;

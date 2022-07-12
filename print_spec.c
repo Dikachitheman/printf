@@ -24,7 +24,7 @@ int (*print_spec(char ch))(va_list)
 		{"p", print_address},
 		{"r", print_reverse},
 		{"R", print_rot13},
-		{"o", print_oct},
+		{"o", print_octal},
 		{"x", print_hex},
 		{"X", print_HEX}
 	};
