@@ -10,7 +10,7 @@
 int print_S(va_list args)
 {
 	int i;
-	char *str = va_arg(arg, char*);
+	char *str = va_arg(args, char*);
 
 	if (str == NULL)
 		str = "(null)";

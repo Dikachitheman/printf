@@ -101,7 +101,7 @@ int print_binary(va_list args)
 		putchar(bin[i]);
 		charPrinted++;
 	}
-	free(binxx);
+	free(bin);
 	return (charPrinted);
 }
 
