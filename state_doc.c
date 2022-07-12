@@ -227,5 +227,7 @@ int _printf(const char *format, ...)
 
 int main()
 {
-    
+    printf("%d", 89);
+    printf("\n");
+    _printf("%d", 89);
 }
