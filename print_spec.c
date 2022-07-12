@@ -10,7 +10,7 @@
  * printing function
  * Return: a pointer to the matching printing function
  */
-int (*print_spec(char c))(va_list)
+int (*print_spec(char ch))(va_list)
 {
 	specptr functs_arr[] = {
 		{"c", print_char},
@@ -32,7 +32,7 @@ int (*print_spec(char c))(va_list)
 	register int i;
 
 	for (i = 0; i < flags; i++)
-		if (functs_arr[i].id[0] == c)
+		if (functs_arr[i].id[0] == ch)
 			return (functs_arr[i].fnspec);
 	return (NULL);
 }
