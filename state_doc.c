@@ -28,5 +28,8 @@
  * the spec function wouldnt be accessed from printf instead from state
  * 
  * the entire args would be checked one after the other.
- * example %
+ * example %4.2ld, 67.0987
+ *      = 67.09
+ * 
+ * 
  */
