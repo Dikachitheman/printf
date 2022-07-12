@@ -193,11 +193,11 @@ int print_int(va_list args)
 	return (len);
 }
 
-int (*state(char c))(va_list)
+int (*fstate(char c))(va_list)
 {
-    int pos;
+    int *pos;
     int i;
-    state = print_spec(pos[i + 1]);
+    int state = print_spec(pos[i + 1]);
 }
 
 int _printf(const char *format, ...)
@@ -215,7 +215,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] != '\0')
-                state = print_spec(format[i + 1]);
+                state = fstate(format[i + 1]);
 			if (state == NULL)
 			{
 				putchar(format[i]);
