@@ -50,7 +50,8 @@ int print_address(va_list args);
 
 /* write_functions */
 int _putchar(char c);
-int _puts(char *str, int ascii);
+int _puts(char *str);
+int _putsf(char *str, int ascii);
 
 /* _printf */
 int _printf(const char *format, ...);

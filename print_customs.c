@@ -18,10 +18,12 @@ int print_S(va_list args)
 
 	for (i = 0; s[i]; i++)
 	{
-		if (s[i] > 0 && (s[i] < 32 || s[i] >= 127))
+		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
 		{
+			puts("\\x");
+			count += 2;
+			res = convert(s[i], 16, 0);
 			if (!res[1])
-			puts("\\x"), count += 2, res = convert(s[i], 16, 0);
 				count += putchar('0');
 			count += puts(res);
 		}
@@ -65,14 +67,14 @@ int print_rot13(va_list args)
 
 	if (!argument)
 	{
-		sum += _puts("%R", 0);
+		sum += _putsf("%R", 0);
 		return (sum);
 	}
 
 	str = convert_rot13(argument);
 	if (!str)
 		return (0);
-	sum = _puts(str, 0);
+	sum = _putsf(str, 0);
 	free(str);
 	return (sum);
 }

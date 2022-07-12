@@ -29,18 +29,44 @@ int _putchar(char c)
 /**
  * _puts - prints a string to stdout
  * @str: pointer to the string to print
- * @ascii: restrict ascii
  * Return: number of characters written
  */
-int _puts(char *str, int ascii)
+int _puts(char *str)
 {
 	register int i;
 
-	if (ascii)
-	{
-		for (i = 0; str[i] != '\0'; i++)
-			_putchar(str[i]);
-	}
-	
+	for (i = 0; str[i] != '\0'; i++)
+		_putchar(str[i]);
 	return (i);
+}
+
+/**
+ * _putsf - write all char from string to stdout
+ * @str: string to print
+ * @ascii: enable ascii restriction
+ * Return: number of printed char
+ */
+int _putsf(char *str, int ascii)
+{
+	char *s;
+	int i = 0, sum = 0;
+
+	while (str[i])
+	{
+		if (((str[i] >= 0 && str[i] < 32) || str[i] >= 127) && ascii)
+		{
+			s = convert(str[i], 16, 1);
+			sum += write(1, "\\x", 2);
+			if (str[i] >= 0 && str[i] < 16)
+				sum += _putsf(s, 0);
+			free(s);
+			i++;
+		}
+		else
+		{
+			sum += _putchar(str[i]);
+			i++;
+		}
+	}
+	return (sum);
 }

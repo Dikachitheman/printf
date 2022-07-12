@@ -18,11 +18,12 @@ int (*print_spec(char c))(va_list)
 		{"%", print_percent},
 		{"d", print_int},
 		{"i", print_int},
+		{"b", print_binary},
 		{"S", print_S},
 		{"r", print_reverse},
 		{"R", print_rot13}
 	};
-	int flags = 8;
+	int flags = 9;
 
 	register int i;
 
