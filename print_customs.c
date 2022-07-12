@@ -7,28 +7,57 @@
  * @args: va_list arguments from _printf()
  * Return: number of character printed
  */
-int print_S(va_list args)
+// int print_S(va_list args)
+// {
+// 	int i, count = 0;
+// 	char *res;
+// 	char *s = va_arg(args, char *);
+
+// 	if (!s)
+// 		return (puts("(null)"));
+
+// 	for (i = 0; s[i]; i++)
+// 	{
+// 		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
+// 		{
+// 			puts("\\x"), count += 2, res = convert(s[i], 16, 0);
+// 			if (!res[1])
+// 				count += _putchar('0');
+// 			count += puts(res);
+// 		}
+// 		else
+// 			count += _putchar(s[i]);
+// 	}
+// 	return (count);
+// }
+
+
+int print_S(va_list arg)
 {
-	int i, count = 0;
-	char *res;
-	char *s = va_arg(args, char *);
+int i;
+char *str = va_arg(arg, char*);
 
-	if (!s)
-		return (puts("(null)"));
+if (str == NULL)
+	str = "(null)";
+else if (*str == '\0')
+	return (-1);
 
-	for (i = 0; s[i]; i++)
+for (i = 0; str[i]; i++)
+{
+	if ((str[i] < 32 && str[i] > 0) || str[i] >= 127)
 	{
-		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
-		{
-			puts("\\x"), count += 2, res = convert(s[i], 16, 0);
-			if (!res[1])
-				count += putchar('0');
-			count += puts(res);
-		}
-		else
-			count += putchar(s[i]);
+		putchar('\\');
+		putchar('x');
+		if (i < 16)
+			putchar('0');
+
+		print_HEX(str[i]);
 	}
-	return (count);
+	else
+		putchar(str[i]);
+}
+
+return (i);
 }
 
 /**
