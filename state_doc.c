@@ -69,26 +69,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef struct print_spec
+{
+	char *id;
+	int (*fnspec)(va_list args);
+} specptr;
 
 int (*print_spec(char ch))(va_list)
 {
 	specptr functs_arr[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"%", print_percent},
+		// {"c", print_char},
+		// {"s", print_string},
+		// {"%", print_percent},
 		{"d", print_int},
-		{"i", print_int},
+		// {"i", print_int},
 		{"b", print_binary},
-		{"u", print_unsigned},
-		{"S", print_S},
-		{"p", print_address},
-		{"r", print_reverse},
-		{"R", print_rot13},
-		{"o", print_octal},
-		{"x", print_hex},
+		// {"u", print_unsigned},
+		// {"S", print_S},
+		// {"p", print_address},
+		// {"r", print_reverse},
+		// {"R", print_rot13},
+		// {"o", print_octal},
+		// {"x", print_hex},
 		{"X", print_HEX}
 	};
-	int flags = 14;
+	int flags = 3;
 	register int i;
 
 	for (i = 0; i < flags; i++)
@@ -149,7 +154,7 @@ int print_binary(va_list args)
 		num = num / 2;
 	}
 
-	for (i = 0; i < j && octa[i] == '0'; i++)
+	for (i = 0; i < j && bin[i] == '0'; i++)
 		;
 	for (; i < j; i++)
 	{

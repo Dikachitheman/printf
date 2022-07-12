@@ -94,7 +94,7 @@ int print_binary(va_list args)
 		num = num / 2;
 	}
 
-	for (i = 0; i < j && octa[i] == '0'; i++)
+	for (i = 0; i < j && bin[i] == '0'; i++)
 		;
 	for (; i < j; i++)
 	{
