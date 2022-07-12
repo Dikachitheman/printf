@@ -25,6 +25,4 @@
  * what arguments would state function take?? (va_list)
  * function pointer should be used to access the states.
  * 
- * 
- * 
  */
