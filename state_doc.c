@@ -42,5 +42,24 @@
  * 
  *
  * ****actual code instance******
+ * printf ( takes in format specifier, and number of arguments)
  * 
+ * as long as element after % isnt % or null -->
+ * 
+ * int _printf(const char *format, ...)
+ * {
+ * 
+ *      if (postion(%) + 1) == - || +
+ *          flag()
+ *      if flag is true --> position ++
+ *                  else -- > if (postion(%) + 1) == int
+ *                            width()
+ *      if width is true --> position ++
+ *                  else -- > if (postion(%) + 1) == .
+ *                            precision()
+ *      if precision is true --> position ++
+ *                  else -- > if (postion(%) + 1) == l || ll || h
+ *                            length()
+ * 
+ * }
  */
