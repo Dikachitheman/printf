@@ -65,11 +65,12 @@ int print_rot13(va_list args)
 	char ROT13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 	char *s = va_arg(args, char *);
 
-	for (j = 0; s[j]; j++)
+	for (j = 0; s[j] != '\0'; j++)
 	{
 		i = 0;
 		while (rot13[i] != '\0' && s[j] != rot13[i])
-			i++;
+			putchar(s[j]);
+		i++;
 
 		if (s[j] == rot13[i])
 			putchar(ROT13[i]);
