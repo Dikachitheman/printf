@@ -20,9 +20,7 @@ int print_S(va_list args)
 	{
 		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
 		{
-			puts("\\x");
-			count += 2;
-			res = convert(s[i], 16, 0);
+			puts("\\x"), count += 2, res = convert(s[i], 16, 0);
 			if (!res[1])
 				count += putchar('0');
 			count += puts(res);
@@ -62,19 +60,20 @@ int print_reverse(va_list args)
  */
 int print_rot13(va_list args)
 {
-	int sum = 0;
-	char *str, *argument = va_arg(args, char *);
+	int i, j;
+	char rot13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char ROT13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char *s = va_arg(args, char *);
 
-	if (!argument)
+	for (j = 0; s[j] != '\0'; j++)
 	{
-		sum += _putsf("%R", 0);
-		return (sum);
+		i = 0;
+		while (rot13[i] != '\0' && s[j] != rot13[i])
+			i++;
+
+		if (s[j] == rot13[i])
+			putchar(ROT13[i]);
 	}
 
-	str = convert_rot13(argument);
-	if (!str)
-		return (0);
-	sum = _putsf(str, 0);
-	free(str);
-	return (sum);
+	return (j);
 }

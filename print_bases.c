@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * print_binary - converts an unsigned int argument into binary
+ * print_binary - prints a number in base 2
  * @args: va_list arguments from _printf()
- * Return: the number of char printed
+ *
+ * Return: the number to be printed
  */
 int print_binary(va_list args)
 {

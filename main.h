@@ -16,7 +16,7 @@
 typedef struct print_spec
 {
 	char *id;
-	int (*fnspec)(va_list);
+	int (*fnspec)(va_list args);
 } specptr;
 
 /* print_alpha */
@@ -26,10 +26,11 @@ int print_string(va_list args);
 /* print_nums */
 int print_int(va_list args);
 int print_unsigned(va_list args);
+void print_number(int n);
+int count_digit(int i);
 
 /* converter */
 char *convert(unsigned long int num, int base, int lowercase);
-char *convert_rot13(char *str);
 
 /* print_bases */
 int print_binary(va_list args);
@@ -43,7 +44,7 @@ int print_reverse(va_list args);
 int print_rot13(va_list args);
 
 /* print_percent */
-int print_percent(va_list args __attribute__((unused)));
+int print_percent(va_list args);
 
 /* print_address */
 int print_address(va_list args);
@@ -51,7 +52,6 @@ int print_address(va_list args);
 /* write_functions */
 int _putchar(char c);
 int _puts(char *str);
-int _putsf(char *str, int ascii);
 
 /* _printf */
 int _printf(const char *format, ...);
