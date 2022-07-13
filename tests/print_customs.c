@@ -10,29 +10,25 @@
  */
 int print_S(va_list args)
 {
-	int i, count = 0;
+	unsigned int i;
+	int count = 0;
 	char *str = va_arg(args, char *);
-	char *res;
 
 	if (str == NULL)
 		str = "(null)";
-	else if (*str == '\0')
-		return (-1);
-
 	for (i = 0; str[i]; i++)
 	{
-		if ((str[i] < 32 && str[i] > 0) || str[i] >= 127)
+		if (str[i] < 32 || str[i] >= 127)
 		{
 			count += putchar('\\');
 			count += putchar('x');
-			if (i < 16)
-				count += putchar('0');
-
-			res = convert(str[i], 16, 0);
-			count += _printf(res);
+			count += hex_print(str[i]);
 		}
 		else
+		{
 			putchar(str[i]);
+			count++;
+		}
 	}
 
 	return (i);
@@ -92,6 +88,29 @@ int print_rot13(va_list args)
 			putchar(str[i]);
 			count++;
 		}
+	}
+	return (count);
+}
+
+/**
+ * print_hex - prints a char's ASCII value in uppercase hex
+ * @c: char to print
+ * Return: number of chars printed (always 2)
+ */
+int hex_print(char c)
+{
+	int count;
+	char diff = 'A' - ':';
+	char d[2];
+
+	d[0] = c / 16;
+	d[1] = c % 16;
+	for (count = 0; count < 2; count++)
+	{
+		if (d[count] >= 10)
+			putchar('0' + diff + d[count]);
+		else
+			putchar('0' + d[count]);
 	}
 	return (count);
 }

@@ -20,16 +20,16 @@ int (*print_spec(char ch))(va_list)
 		{"i", print_int},
 		{"b", print_binary},
 		{"u", print_unsigned},
-		{"S", print_S},
+/*		{"S", print_S}, */
 		{"p", print_address},
-		{"r", print_reverse},
-		{"R", print_rot13},
+/*		{"r", print_reverse}, */
+/*		{"R", print_rot13}, */
 		{"o", print_octal},
 		{"x", print_hex},
 		{"X", print_HEX}
 	};
 
-	int flags = 14;
+	int flags = 11;
 
 	register int i;
 

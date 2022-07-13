@@ -13,9 +13,6 @@ int print_string(va_list args)
 
 	if (str == NULL)
 		str = "(null)";
-	else if (*str == '\0')
-		return (-1);
-
 	for (i = 0; str[i]; i++)
 		putchar(str[i]);
 
@@ -30,12 +27,8 @@ int print_string(va_list args)
  */
 int print_char(va_list args)
 {
-	char c = va_arg(args, int);
+	char c = (char)va_arg(args, int);
 
-	if (c == '\0')
-	{
-		return (write(1, &c, 1));
-	}
 	putchar(c);
 	return (1);
 }
