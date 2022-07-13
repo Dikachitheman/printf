@@ -26,6 +26,7 @@ int print_string(va_list args);
 /* print_nums */
 int print_int(va_list args);
 int print_unsigned(va_list args);
+int print_decimal(va_list args);
 void print_number(int n);
 int count_digit(int i);
 

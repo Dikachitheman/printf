@@ -16,7 +16,7 @@ int (*print_spec(char ch))(va_list)
 		{"c", print_char},
 		{"s", print_string},
 		{"%", print_percent},
-		{"d", print_int},
+		{"d", print_decimal},
 		{"i", print_int},
 		{"b", print_binary},
 		{"u", print_unsigned},

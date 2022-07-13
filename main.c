@@ -38,8 +38,8 @@ int main(void)
 	printf("Address:[%p]\n", addr);
 	len = _printf("Percent:[%%]\n");
 	len2 = printf("Percent:[%%]\n");
-	_printf("Len:[%d]\n", len);
-	printf("Len:[%d]\n", len2);
+	_printf("Len:[%d, %i]\n", len, len);
+	printf("Len:[%d, %i]\n", len2, len2);
 	_printf("Unknown:[%r]\n", "French");
 	printf("Unknown:[%r]\n", "French");
 	_printf("Rot13:[%R]\n", "French");
