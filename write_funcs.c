@@ -44,7 +44,7 @@ char *create_buffer(void)
  * write_buffer - prints buffer, then frees it and frees va_list
  * @buffer: buffer holding print-ables
  * @len: length of print-able string
- * @list: va_list
+ * @args: va_list arguments from _printf()
  */
 void write_buffer(char *buffer, int len, va_list args)
 {
@@ -53,5 +53,6 @@ void write_buffer(char *buffer, int len, va_list args)
 	buff = realloc(buffer, len); /* realloc to correct size */
 	write(1, buff, len); /* print */
 
-	free(buff); va_end(args);
+	free(buff);
+	va_end(args);
 }

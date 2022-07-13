@@ -134,7 +134,8 @@ int print_octal(va_list args)
 		num = num / 8;
 	}
 
-	for (i = 0; i < j && octa[i] == '0'; i++);
+	for (i = 0; i < j && octa[i] == '0'; i++)
+		;
 	for (; i < j; i++)
 	{
 		putchar(octa[i]);

@@ -16,6 +16,8 @@ int print_address(va_list args)
 	if (!p)
 		return (puts("(nil)"));
 	str = convert(p, 16, 1);
-	count += puts("0x"), count += puts(str);
+	count += putchar('0');
+	count += putchar('x');
+	count += _printf(str);
 	return (count);
 }
