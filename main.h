@@ -1,6 +1,6 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
-
+#include <limits.h> /* INT_MAX, res */
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>

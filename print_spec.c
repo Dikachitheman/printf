@@ -29,7 +29,7 @@ int (*print_spec(char ch))(va_list)
 		{"X", print_HEX}
 	};
 
-	int flags = 11;
+	int flags = 14;
 
 	register int i;
 
