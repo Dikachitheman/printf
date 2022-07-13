@@ -6,8 +6,10 @@
  *
  * Return: Always 1.
  */
-int print_percent(va_list args __attribute__((unused)))
+int print_percent(va_list args)
 {
-	putchar('%');
+	char ch = (char)va_arg(args, int);
+
+	putchar(ch);
 	return (1);
 }
