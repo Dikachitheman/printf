@@ -1,6 +1,29 @@
 #include "main.h"
 
 /**
+ * hex_print_S - prints a char's ASCII value in uppercase hex
+ * @c: char to print
+ * Return: number of chars printed (always 2)
+ */
+int hex_print_S(char c)
+{
+	int count;
+	char diff = 'A' - ':';
+	char d[2];
+
+	d[0] = c / 16;
+	d[1] = c % 16;
+	for (count = 0; count < 2; count++)
+	{
+		if (d[count] >= 10)
+			putchar('0' + diff + d[count]);
+		else
+			putchar('0' + d[count]);
+	}
+	return (count);
+}
+
+/**
  * print_S - non printable characters
  * Description: (0 < ASCII value < 32 or >= 127) are printed this way:\x,
  * followed by the
@@ -22,7 +45,7 @@ int print_S(va_list args)
 		{
 			count += putchar('\\');
 			count += putchar('x');
-			count += hex_print(str[i]);
+			count += hex_print_S(str[i]);
 		}
 		else
 		{
@@ -88,29 +111,6 @@ int print_rot13(va_list args)
 			putchar(str[i]);
 			count++;
 		}
-	}
-	return (count);
-}
-
-/**
- * print_hex_S - prints a char's ASCII value in uppercase hex
- * @c: char to print
- * Return: number of chars printed (always 2)
- */
-int hex_print_S(char c)
-{
-	int count;
-	char diff = 'A' - ':';
-	char d[2];
-
-	d[0] = c / 16;
-	d[1] = c % 16;
-	for (count = 0; count < 2; count++)
-	{
-		if (d[count] >= 10)
-			putchar('0' + diff + d[count]);
-		else
-			putchar('0' + d[count]);
 	}
 	return (count);
 }
