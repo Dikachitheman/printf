@@ -5,7 +5,7 @@
  * @c: char to print
  * Return: number of chars printed (always 2)
  */
-int hex_print_S(char c)
+static int hex_print_S(char c)
 {
 	int count;
 	char diff = 'A' - ':';
@@ -41,10 +41,11 @@ int print_S(va_list args)
 		str = "(null)";
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] > 0 && (str[i] < 32 || str[i] >= 127))
+		if (str[i] < 32 || str[i] >= 127)
 		{
-			count += putchar('\\');
-			count += putchar('x');
+			putchar('\\');
+			putchar('x');
+			count += 2;
 			count += hex_print_S(str[i]);
 		}
 		else
